@@ -130,7 +130,10 @@ BerryCam needs to be run as a Python process to provide the necessary links to a
 
 The Python script will run in the background and you will see the following message:
 
-`B E R R Y C A M -- Listening on port 8000 Please ensure your BerryCam App is installed and running on your iOS Device`
+`
+B E R R Y C A M -- Listening on port 8000 
+Please ensure your BerryCam App is installed and running on your iOS Device
+`
 
 You can close terminal and as long as the Raspberry Pi has power will continue to run BerryCam.
 
