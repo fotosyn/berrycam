@@ -188,7 +188,9 @@ Once complete, select **Done** and you will be returned to the main screen. Afte
 
 ### You can now start capturing images! 
 
-Simply press the large green capture (camera) button. After a short pause, the image will then appear in your iOS device. You can experiment with various capture parameters by revisiting the settings panel and updating. Images are saved locally to the Pi, and can be accessed in any web browser by simply visiting:
+Simply press the large green capture (camera) button. After a short pause, the image will then appear in your iOS device. You can experiment with various capture parameters by revisiting the settings panel and updating. There's no need to worry about losing any captures you make. 
+
+Images are saved locally to the Pi, and can be accessed in any web browser by going back into settings (ellipsis menu) and selecting 'Review images on Raspberry Pi' or entering the address below into a browser on a device on the same local network:
 
 ```
 http://YOUR_IP_ADDRESS:8000/berrycam/
