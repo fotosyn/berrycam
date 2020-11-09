@@ -76,7 +76,10 @@ Start LXTerminal on the Raspberry Pi using the icon (a small black window icon w
 
 First of all, we will need to find the IP address of the Raspberry Pi on your network. To do this type in 
 
-```ifconfig``` and press return. This will return quite a bit of information. the only part you will need is highlighted in light grey (to show you where to look) in the screenshow below.
+```
+ifconfig
+``` 
+and press return. This will return quite a bit of information. the only part you will need is highlighted in light grey (to show you where to look) in the screenshow below.
 
 ![\[Raspberry Pi OS Terminal IP Address\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/raspberry-pi-os-ipaddress.png)
 
@@ -98,27 +101,51 @@ Connecting using PuTTy:
 
 ![\[PuTTy Terminal\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/putty-terminal.jpg)
 
-To connect, enter `ssh pi@YOUR_IP_ADDRESS` replacing YOUR_IP_ADDRESS with the number you took note of and enter your password when prompted. There will be no typing input when entering the password on some cases, so be sure to focus on entering the right keystrokes.
+To connect, enter 
+
+```
+ssh pi@YOUR_IP_ADDRESS
+``` 
+replacing YOUR_IP_ADDRESS with the number you took note of and enter your password when prompted. There will be no typing input when entering the password on some cases, so be sure to focus on entering the right keystrokes.
 
 ### Download and install BerryCam onto your Raspberry Pi
 
 First of all make sure you're in the home directory for the user you are logged in as. This will normally be 'pi' and is located `/home/pi/`
 
-You can double check this using the ``pwd`` command. If you find you are in a different directory simply use:
+You can double check this using the 
 
-`cd /home/pi` or `cd /home/<your-user-name>/`
+```
+pwd
+``` 
+command. If you find you are in a different directory simply use:
+
+```
+cd /home/pi
+```
+
+or 
+
+```
+cd /home/<your-user-name>/
+```
 
 Next, we need to clone the BerryCam script into your home folder. Within the terminal, simply type:
 
-```wget https://bitbucket.org/fotosyn/berrycam-script/raw/9680b45f5f8b16f929d8a06c54ac81ce4b058275/berryCam.py```
+```
+wget https://bitbucket.org/fotosyn/berrycam-script/raw/9680b45f5f8b16f929d8a06c54ac81ce4b058275/berryCam.py
+```
 
 Or if you prefer to use git, clone the repository:
 
-```git clone https://fotosyn@bitbucket.org/fotosyn/berrycam-script.git```
+```
+git clone https://fotosyn@bitbucket.org/fotosyn/berrycam-script.git
+```
 
 After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. To check this has been downloaded and unpacked, or set up as a file issue the command:
 
-```ls```
+```
+ls
+```
 
 This will list files currently in home. You will notice the new Python **berryCam.py** file. This is needed to provide the link between the iOS device and the Raspberry Pi.
 
@@ -126,7 +153,9 @@ This will list files currently in home. You will notice the new Python **berryCa
 
 BerryCam needs to be run as a Python process to provide the necessary links to allow the BerryCam iOS app to trigger the camera, provide previews and save files. To run simply enter:
 
-```sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log```
+```
+sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
+```
 
 The Python script will run in the background and you will see the following message:
 
@@ -161,7 +190,9 @@ Once complete, select **Done** and you will be returned to the main screen. Afte
 
 Simply press the large green capture (camera) button. After a short pause, the image will then appear in your iOS device. You can experiment with various capture parameters by revisiting the settings panel and updating. Images are saved locally to the Pi, and can be accessed in any web browser by simply visiting:
 
-`http://YOUR_IP_ADDRESS:8000/berrycam/` 
+```
+http://YOUR_IP_ADDRESS:8000/berrycam/
+``` 
 
 You can also save or share the currently captured image directly from the iOS device using the share button. 
 
