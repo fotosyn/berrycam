@@ -5,9 +5,9 @@
 ### Steps to get BerryCam up and running on your Raspberry Pi and iOS device 
 
 ### Preparation : 
-[1. What you need](#markdown-header-items-you-will-need) / [2. Getting started](#markdown-header-useful-guides-to-get-started)  / [3. Camera set-up](#markdown-header-setting-up-the-camera)
+[1. What you need](#items-you-will-need) / [2. Getting started](#useful-guides-to-get-started)  / [3. Camera set-up](#setting-up-the-camera)
 ### Capturing images : 
-[4. The BerryCam script](#markdown-header-installing-and-running-the-berrycam-script) / [5. Using the BerryCam app](#markdown-header-using-the-berrycam-app-to-capture-images)
+[4. The BerryCam script](#installing-and-running-the-berrycam-script) / [5. Using the BerryCam app](#using-the-berrycam-app-to-capture-images)
 
 ---
 
@@ -15,18 +15,18 @@
 
 It's important that you have the following items to run BerryCam.
 
-1. A Raspberry Pi computer (any model) with WiFi connectivity
-2. An SD card. Most models now take the Micro SD type although some work with standard sized SD cards
-3. All the necessary leads (power supply, HDMI cable mouse and keyboard if working from Raspberry Pi OS desktop)
-4. A working WiFi connection
-5. A Raspberry Pi camera module (V1, V2, Noir and HQ Camera all work)
-6. An iOS device (iPhone or iPad) 
+1. A Raspberry Pi computer (any model) with WiFi connectivity.
+2. An SD card. Most models now take the Micro SD type although some work with standard sized SD cards.
+3. All the necessary leads (power supply, HDMI cable, mouse and keyboard, if working from Raspberry Pi OS desktop).
+4. A working WiFi connection.
+5. A Raspberry Pi camera module (V1, V2, NoIR and HQ Camera all work).
+6. An iOS device running iOS 14 (iPhone or iPad).
 
 ---
 
 # Useful guides to get started
 
-> Before we get into the detail of setting up and using BerryCam, here are some useful resources. It's worthwhile taking the time to explore these pages as they will help you get your Raspberry Pi up and running for the first time. If you're familiar with all of this you may wish to [skip this part](#markdown-header-setting-up-the-camera)
+> Before we get into the detail of setting up and using BerryCam, here are some useful resources. It's worthwhile taking the time to explore these pages as they will help you get your Raspberry Pi up and running for the first time. If you're familiar with all of this you may wish to [skip this part](#setting-up-the-camera)
 
 [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up)
 Here you’ll learn about your Raspberry Pi, what things you need to use it, and how to set it up.
@@ -45,7 +45,7 @@ A wide range of information related to the hardware and software to get up and r
 ---
 
 # Setting up the camera
-> You will need to physically connect the Raspberry Pi camera module using the supplied ribbon cable. This is generally the same process for all models although the connector may be positioned slightly differently, or in the case of Raspberry Pi Zero, require a different connector ribbon cable. If you've done this already, again you may wish to [skip this part](#markdown-header-installing-and-running-the-berrycam-script)
+> You will need to physically connect the Raspberry Pi camera module using the supplied ribbon cable. This is generally the same process for all models although the connector may be positioned slightly differently, or in the case of Raspberry Pi Zero, require a different connector ribbon cable. If you've done this already, again you may wish to [skip this part](#installing-and-running-the-berrycam-script)
 
 [Getting started with the Camera Module](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera)
 Learn how to connect the Raspberry Pi Camera Module to your Raspberry Pi in preparation for use with BerryCam
@@ -66,19 +66,19 @@ This useful reference covers all the commands for the applications provided with
 
 There are two ways we can interact with the Raspberry Pi. The easiest and best documented way to do this is using the Raspberry Pi OS desktop. This requires a display, keyboard and mouse. Start by reading ***using the Raspberry Pi OS desktop*** below
 
-If this isn't possible, you can connect using a [VNC client](https://magpi.raspberrypi.org/articles/vnc-raspberry-pi) or directly using terminal on a Mac or an SSH client like [Putty](https://www.putty.org) on a Windows PC. If this is how you need to connect, start with ***using the command line from another machine***
+If this isn't possible, you can connect using a [VNC client](https://magpi.raspberrypi.org/articles/vnc-raspberry-pi) or directly using terminal on a Mac or an SSH client like [PuTTy](https://www.putty.org) on a Windows PC. If this is how you need to connect, start with ***using the command line from another machine***
 
 ### Using the Raspberry Pi OS desktop
 
-Start Terminal on the Raspberry Pi using the icon (a small black window icon with a white arrow) on the top tool bar desktop. You will be presented with a window like this.
+Start LXTerminal on the Raspberry Pi using the icon (a small black window icon with a white arrow) on the top tool bar desktop. You will be presented with a window like this.
 
-[IMAGE]
+![\[Raspberry Pi OS Terminal\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/raspberry-pi-os-terminal.png)
 
 First of all, we will need to find the IP address of the Raspberry Pi on your network. To do this type in 
 
 ```ifconfig``` and press return. This will return quite a bit of information. the only part you will need is highlighted in light grey (to show you where to look) in the screenshow below.
 
-[IMAGE]
+![\[Raspberry Pi OS Terminal IP Address\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/raspberry-pi-os-ipaddress.png)
 
 Take a note of this number (IP address) as you will need it later on in the BerryCam app to connect.
 
@@ -86,11 +86,17 @@ Take a note of this number (IP address) as you will need it later on in the Berr
 
 > **Before you begin** – you will need to know the connected IP address of your Raspberry Pi.  If you can't use the Raspberry Pi OS desktop, you can get this from your broadband router control panel (your provider will have given you this information when it was set up) or if you use a WiFi mesh network like Google WiFi this number (IP address) will be available under Connected Devices in the Google WiFi app. **Take a note of this number (IP address) as you will need it later on in the BerryCam app to connect.**
 
-To connect using a remote command line on a terminal, we need to use a protocol called SSH. You can use Terminal on a Mac (press cmd + space and type 'terminal' to launch this) or  [Putty](https://www.putty.org) on a Windows PC.
+To connect using a remote command line on a terminal, we need to use a protocol called SSH. You can use Terminal on a Mac (press cmd + space and type 'terminal' to launch this) or  [PuTTy](https://www.putty.org) on a Windows PC.
 
 **When connecting, you'll be using using your Raspberry Pi username and password.**  This is normally `pi`for the username and `raspberry` for the password. It is recommended that you [change this](https://www.raspberrypi.org/documentation/linux/usage/users.md) to something only you know.
 
-[IMG]
+Connecting using MacOS Terminal:
+
+![\[MacOS Terminal\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/macos-terminal.png)
+
+Connecting using PuTTy:
+
+![\[PuTTy Terminal\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/putty-terminal.jpg)
 
 To connect, enter `ssh pi@YOUR_IP_ADDRESS` replacing YOUR_IP_ADDRESS with the number you took note of and enter your password when prompted. There will be no typing input when entering the password on some cases, so be sure to focus on entering the right keystrokes.
 
@@ -98,7 +104,7 @@ To connect, enter `ssh pi@YOUR_IP_ADDRESS` replacing YOUR_IP_ADDRESS with the nu
 
 First of all make sure you're in the home directory for the user you are logged in as. This will normally be 'pi' and is located `/home/pi/`
 
-If you find you are in a different directory simply use:
+You can double check this using the ``pwd`` command. If you find you are in a different directory simply use:
 
 `cd /home/pi` or `cd /home/<your-user-name>/`
 
@@ -137,9 +143,10 @@ You can close terminal and as long as the Raspberry Pi has power will continue t
 
 > Make sure you have downloaded and installed the BerryCam app onto your iOS device, and that both devices are connected on the same local network (generally your cellular connection won't work. Wifi will be easiest). 
 
-[App Store LINK]
 
-To set up the connection on the iOS App, tap the settings button (dots icon), scroll down to **Raspberry Pi Settings**
+[![Download on the App Store](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/app-store-badge.png)](https://apps.apple.com/app/berrycam-take-images-with-a-raspberry-pi-camera/id687071023)
+
+To set up the connection on the iOS App, tap the settings button (ellipsis icon), scroll down to **Raspberry Pi Settings**
 
 1. Select the correct version of camera you are using with your Raspberry Pi (this will dictate the output size of the image to be captured)
 2. Update your IP address with the one given when you issued the `ifconfig` comnmand
