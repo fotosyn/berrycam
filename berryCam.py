@@ -50,7 +50,7 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
             command += " -sa " + parsed_dictionary['sa'] # Define Image Saturation
             command += " -ISO " + parsed_dictionary['iso'] # Define Image ISO
             command += " -drc " + parsed_dictionary['drc'] # Enable/disable dynamic range compression
-            command += " -st " # Use stills capture frame for image statistics
+            # command += " -st " # Use stills capture frame for image statistics NOT IMPLEMENTED
             
             if parsed_dictionary['ss'] != "1":
                 command += " -ss " + parsed_dictionary['ss'] # Define shutter speed STILL TO BE IMPLEMENTED

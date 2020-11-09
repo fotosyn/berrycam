@@ -132,16 +132,16 @@ cd /home/<your-user-name>/
 Next, we need to clone the BerryCam script into your home folder. Within the terminal, simply type:
 
 ```
-wget https://bitbucket.org/fotosyn/berrycam-script/raw/9680b45f5f8b16f929d8a06c54ac81ce4b058275/berryCam.py
+wget https://github.com/fotosyn/berrycam/blob/master/berryCam.py
 ```
 
 Or if you prefer to use git, clone the repository:
 
 ```
-git clone https://fotosyn@bitbucket.org/fotosyn/berrycam-script.git
+git clone https://github.com/fotosyn/berrycam.git
 ```
 
-After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. To check this has been downloaded and unpacked, or set up as a file issue the command:
+After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. If you cloned using the git method, this will be in a folder named berrycam. To check this has been downloaded and unpacked, or set up as a file issue the command:
 
 ```
 ls
