@@ -110,15 +110,15 @@ You can double check this using the ``pwd`` command. If you find you are in a di
 
 Next, we need to clone the BerryCam script into your home folder. Within the terminal, simply type:
 
-`wget https://bitbucket.org/fotosyn/berrycam-script/raw/9680b45f5f8b16f929d8a06c54ac81ce4b058275/berryCam.py`
+```wget https://bitbucket.org/fotosyn/berrycam-script/raw/9680b45f5f8b16f929d8a06c54ac81ce4b058275/berryCam.py```
 
 Or if you prefer to use git, clone the repository:
 
-`git clone https://fotosyn@bitbucket.org/fotosyn/berrycam-script.git`
+```git clone https://fotosyn@bitbucket.org/fotosyn/berrycam-script.git```
 
 After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. To check this has been downloaded and unpacked, or set up as a file issue the command:
 
-`ls`
+```ls```
 
 This will list files currently in home. You will notice the new Python **berryCam.py** file. This is needed to provide the link between the iOS device and the Raspberry Pi.
 
@@ -126,14 +126,14 @@ This will list files currently in home. You will notice the new Python **berryCa
 
 BerryCam needs to be run as a Python process to provide the necessary links to allow the BerryCam iOS app to trigger the camera, provide previews and save files. To run simply enter:
 
-`sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log`
+```sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log```
 
 The Python script will run in the background and you will see the following message:
 
-`
+```
 B E R R Y C A M -- Listening on port 8000 
 Please ensure your BerryCam App is installed and running on your iOS Device
-`
+```
 
 You can close terminal and as long as the Raspberry Pi has power will continue to run BerryCam.
 
