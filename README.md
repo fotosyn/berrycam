@@ -148,7 +148,7 @@ This will list files currently in home. You will notice the new folder named ber
 cd berrycam
 ```
 
-You can now check the required script has been downloaded. In the comman line, enter again:
+You can now check the required script has been downloaded. In the command line, enter again:
 
 ```
 ls
