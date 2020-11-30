@@ -9,7 +9,7 @@
 #
 #  Raspberry Pi is a trademark of the Raspberry Pi Foundation.
 #  iOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used by Apple Inc. under license.
-
+#
 
 
 import http.server
@@ -49,9 +49,8 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
             command += " -co " + parsed_dictionary['co'] # Define Image Contrast
             command += " -sa " + parsed_dictionary['sa'] # Define Image Saturation
             command += " -ISO " + parsed_dictionary['iso'] # Define Image ISO
-            command += " -drc " + parsed_dictionary['drc'] # Enable/disable dynamic range compression
-            # command += " -st " # Use stills capture frame for image statistics NOT IMPLEMENTED
-            
+            command += " -drc " + parsed_dictionary['drc'] # Define Image dynamic range compres$
+
             if parsed_dictionary['ss'] != "1":
                 command += " -ss " + parsed_dictionary['ss'] # Define shutter speed STILL TO BE IMPLEMENTED
                 
@@ -70,6 +69,16 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
               command += " -vf "
             else:
               command += ""
+
+            if 'gpsLat' in parsed_dictionary:
+                command += " -gps"
+                command += " -x GPS.GPSLatitude=" + parsed_dictionary['gpsLat']
+                command += " -x GPS.GPSLongitude=" + parsed_dictionary['gpsLon']
+                command += " -x GPS.GPSAltitude=" + parsed_dictionary['gpsAlt']
+                command += " -x GPS.GPSLatitudeRef=" + parsed_dictionary['gpsLatRef']
+                command += " -x GPS.GPSLongitudeRef=" + parsed_dictionary['gpsLonRef']
+                command += " -x GPS.GPSImgDirection=1"
+                command += " -x GPS.GPSTimeStamp=1"
 
             if parsed_dictionary['ao'] == "1":
               command += " -a 1024"
