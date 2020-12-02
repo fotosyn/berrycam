@@ -136,7 +136,15 @@ Next, we need to clone the BerryCam script into your home folder. Within the ter
 git clone https://github.com/fotosyn/berrycam.git
 ```
 
-After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. This will be in a folder named berrycam. To check this has been downloaded and unpacked, or set up as a file issue the command:
+After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. This will be in a folder named berrycam. If you receive an error at this point (command not found), you will need to install git which can be done by typing:
+
+```
+sudo apt-get install git
+```
+
+(Once this is complete, you'll need to repeat the clone step again.)
+
+To check the `berryCam.py` file has been downloaded and unpacked, or set up as a file issue the command:
 
 ```
 ls
