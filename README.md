@@ -7,7 +7,7 @@
 ### Preparation : 
 [1. What you need](#items-you-will-need) / [2. Getting started](#useful-guides-to-get-started)  / [3. Camera set-up](#setting-up-the-camera)
 ### Capturing images : 
-[4. The BerryCam script](#installing-and-running-the-berrycam-script) / [5. Using the BerryCam app](#using-the-berrycam-app-to-capture-images)
+[4. The BerryCam script](#installing-and-running-the-berrycam-script) / [5. Using the BerryCam app](#using-the-berrycam-app-to-capture-images) / [6. Troubleshooting](#troubleshooting)
 
 ---
 
@@ -182,7 +182,7 @@ Please ensure your BerryCam App is installed and running on your iOS Device
 
 You can close terminal and as long as the Raspberry Pi has power will continue to run BerryCam.
 
-If you experience any problems at this point, please check [Known Issues](#known-issues)
+If you experience any problems at this point, please check [Troubleshooting](#troubleshooting)
 
 [Back to top](#top)
 
@@ -221,19 +221,19 @@ BerryCam is a quick and easy way to unlock experimentation with the Raspberry Pi
 
 ---
 
-# Known issues
+# Troubleshooting
 
 If you are running an earlier version of Python3, pre version 3.3 then you will encounter a problem with the flush=true parameter in the `berryCam.py` script. 
 
 ### Things you can do:
 
-**Upgrade your Raspberry Pi OS**
+**1. Upgrade your Raspberry Pi OS**
 
 You could install a newer version of Raspberry Pi OS which has newer versions of Python. See [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up) to get the latest version of Raspberry Pi OS and flash to your SD card.
 
-**Update Python3**
+**2. Update Python3**
 
-You can update your version of Python3 to the newest version with the following command:
+Alternatively, you can update your version of Python3 to the newest version with the following command:
 
 ```
 sudo apt-get install python3.7
@@ -245,9 +245,9 @@ and when running use the command:
 sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
 ```
 
-**Remove the flush=true parameter**
+**3. Remove the flush=true parameter**
 
-You'll see these on lines **25 and 26** of the `berryCam.py` Script. They simply improve the experience by outputting that BerryCam is running:
+Another, quick and dirty fix is to remove some parameters in the `berryCam.py` script. You'll see these on lines **25 and 26** of the `berryCam.py` Script where it reads `, flush=true`. They simply improve the experience by outputting that BerryCam is running:
 
 ```
 B E R R Y C A M -- Listening on port 8000 
