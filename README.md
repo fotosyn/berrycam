@@ -164,6 +164,7 @@ ls
 
 You will see a number of files and a folder. Amongs these there should be a Python **berryCam.py** file. This is needed to provide the link between the iOS device and the Raspberry Pi.
 
+
 ###  Running the BerryCam Python script on your Raspberry Pi
 
 BerryCam needs to be run as a Python process to provide the necessary links to allow the BerryCam iOS app to trigger the camera, provide previews and save files. To run simply enter:
@@ -181,6 +182,7 @@ Please ensure your BerryCam App is installed and running on your iOS Device
 
 You can close terminal and as long as the Raspberry Pi has power will continue to run BerryCam.
 
+If you experience any problems at this point, please check [Known Issues](#known-issues)
 
 [Back to top](#top)
 
@@ -217,3 +219,48 @@ BerryCam is a quick and easy way to unlock experimentation with the Raspberry Pi
 
 [Back to top](#top)
 
+---
+
+# Known issues
+
+If you are running an earlier version of Python3, pre version 3.3 then you will encounter a problem with the flush=true parameter in the `berryCam.py` script. 
+
+### Things you can do:
+
+**Upgrade your Raspberry Pi OS**
+
+You could install a newer version of Raspberry Pi OS which has newer versions of Python. See [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up) to get the latest version of Raspberry Pi OS and flash to your SD card.
+
+**Update Python3**
+
+You can update your version of Python3 to the newest version with the following command:
+
+```
+sudo apt-get install python3.7
+```
+
+and when running use the command:
+
+```
+sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
+```
+
+**Remove the flush=true parameter**
+
+You'll see these on lines **25 and 26** of the `berryCam.py` Script. They simply improve the experience by outputting that BerryCam is running:
+
+```
+B E R R Y C A M -- Listening on port 8000 
+Please ensure your BerryCam App is installed and running on your iOS Device
+```
+
+If you remove these be sure to also remove the preceeding comma `, flush=true`
+You can do this in an editor like nano with the command:
+
+```
+sudo nano berryCam.py
+```
+
+Note: when you run the `berryCam.py` script you'll see an stdout notice. You can ignore this and image capture on the Pi itself should run normally.
+
+[Back to top](#top)
