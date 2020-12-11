@@ -71,7 +71,7 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
               command += ""
 
             if 'gpsLat' in parsed_dictionary:
-                command += " -gps"
+                #command += " -gps" Not needed
                 command += " -x GPS.GPSLatitude=" + parsed_dictionary['gpsLat']
                 command += " -x GPS.GPSLongitude=" + parsed_dictionary['gpsLon']
                 command += " -x GPS.GPSAltitude=" + parsed_dictionary['gpsAlt']
