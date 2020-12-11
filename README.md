@@ -225,6 +225,17 @@ BerryCam is a quick and easy way to unlock experimentation with the Raspberry Pi
 
 If you are running an earlier version of Python3, pre version 3.3 then you will encounter a problem with the flush=true parameter in the `berryCam.py` script. 
 
+### Check your version of Python3
+
+To check the version supply the command
+
+```
+python3 --version
+```
+
+If this returns less than 3.3.0 then there are a few things you can do.
+
+
 ### Things you can do:
 
 **1. Upgrade your Raspberry Pi OS**
