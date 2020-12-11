@@ -258,7 +258,7 @@ sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
 
 **3. Remove the flush=true parameter**
 
-Another, quick and dirty fix is to remove some parameters in the `berryCam.py` script. You'll see these on lines **25 and 26** of the `berryCam.py` Script where it reads `, flush=true`. They simply improve the experience by outputting that BerryCam is running:
+Another, quick and dirty fix is to remove some parameters in the `berryCam.py` script. You'll see these on lines **25 and 26** of the `berryCam.py` script where it reads `, flush=true`. They simply improve the experience by outputting that BerryCam is running:
 
 ```
 B E R R Y C A M -- Listening on port 8000 
@@ -272,6 +272,6 @@ You can do this in an editor like nano with the command:
 sudo nano berryCam.py
 ```
 
-Note: when you run the `berryCam.py` script you'll see an stdout notice. You can ignore this and image capture on the Pi itself should run normally.
+Note: after doing this, wen you run the `berryCam.py` script you'll see an stdout notice. You can ignore this and image capture on the Pi itself should run normally.
 
 [Back to top](#top)
