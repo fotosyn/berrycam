@@ -249,7 +249,7 @@ If this returns less than 3.7.0 then there are a few things you can do.
 
 **1. Upgrade your Raspberry Pi OS**
 
-You could install a newer version of Raspberry Pi OS which has newer versions of Python. This is definitely the most direct route to consider if you're blowiong the dust off a trusty Pi that's been sitting in the cupboard. 
+You could install a newer version of Raspberry Pi OS which has newer versions of Python. This is definitely the most direct route to consider if you're blowing the dust off a trusty Pi that's been sitting in the cupboard. 
 
 See [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up) to get the latest version of Raspberry Pi OS and flash to your SD card.
 
