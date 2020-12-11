@@ -295,7 +295,9 @@ python3 --version
 
 Thanks to [Samx18](https://samx18.io/blog/2018/09/05/python3_raspberrypi.html) for the original guide to this detail.
 
-You should then be able to launch BerryCam using the command:
+Perform a reboot of the Pi to be doubly sure that this has been applied.
+
+You should then be able to launch BerryCam using the command.:
 
 ```
 sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
