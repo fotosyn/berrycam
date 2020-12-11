@@ -261,8 +261,14 @@ Download and extract the latest version of Python3 logged in as root
 
 ```
 sudo su
+```
+```
 cd /usr/src
+```
+```
 wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
+```
+```
 tar -xf Python-3.7.0.tgz
 ```
 
@@ -277,7 +283,11 @@ Configure and install Python 3 (this part may take some time)
 
 ```
 cd Python-3.7.0
+```
+```
 ./configure --enable-optimizations
+```
+```
 make altinstall
 ```
 
