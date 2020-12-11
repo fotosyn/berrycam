@@ -253,7 +253,7 @@ sudo apt-get install python3.7
 and when running use the command:
 
 ```
-sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
+sudo nohup python3.7 berryCam.py > berryCam.log & tail -f berryCam.log
 ```
 
 **3. Remove the flush=true parameter**
