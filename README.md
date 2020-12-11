@@ -139,6 +139,7 @@ git clone https://github.com/fotosyn/berrycam.git
 After some activity, the `berryCam.py` file will be copied onto your Raspberry Pi. This will be in a folder named berrycam. If you receive an error at this point (command not found), you will need to install git which can be done by typing:
 
 ```
+sudo apt-get update
 sudo apt-get install git
 ```
 
@@ -163,6 +164,14 @@ ls
 ```
 
 You will see a number of files and a folder. Amongs these there should be a Python **berryCam.py** file. This is needed to provide the link between the iOS device and the Raspberry Pi.
+
+Check that you have Python 3.7.0 by issuing the command:
+
+```
+python3 --version
+```
+
+If you have a version lower than this, we recommend you check the [Troubleshooting](#troubleshooting) guide.
 
 
 ###  Running the BerryCam Python script on your Raspberry Pi
@@ -233,45 +242,62 @@ To check the version supply the command
 python3 --version
 ```
 
-If this returns less than 3.3.0 then there are a few things you can do.
+If this returns less than 3.7.0 then there are a few things you can do.
 
 
 ### Things you can do:
 
 **1. Upgrade your Raspberry Pi OS**
 
-You could install a newer version of Raspberry Pi OS which has newer versions of Python. See [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up) to get the latest version of Raspberry Pi OS and flash to your SD card.
+You could install a newer version of Raspberry Pi OS which has newer versions of Python. This is definitely the most direct route to consider if you're blowiong the dust off a trusty Pi that's been sitting in the cupboard. 
 
-**2. Update Python3**
+See [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up) to get the latest version of Raspberry Pi OS and flash to your SD card.
 
-Alternatively, you can update your version of Python3 to the newest version with the following command:
+**2. Update Python3 to version 3.7.0**
 
-```
-sudo apt-get install python3.7
-```
+Alternatively, you can update your version of Python3. Be aware that this will a fair amount of time and involves a number of steps that need to be followed in this specific order. To update to the newest version with the following commands:
 
-and when running use the command:
+Download and extract the latest version of Python3 logged in as root
 
 ```
-sudo nohup python3.7 berryCam.py > berryCam.log & tail -f berryCam.log
+sudo su
+cd /usr/src
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
+tar -xf Python-3.7.0.tgz
 ```
 
-**3. Remove the flush=true parameter**
-
-Another, quick and dirty fix is to remove some parameters in the `berryCam.py` script. You'll see these on lines **25 and 26** of the `berryCam.py` script where it reads `, flush=true`. They simply improve the experience by outputting that BerryCam is running:
+Install dependencies
 
 ```
-B E R R Y C A M -- Listening on port 8000 
-Please ensure your BerryCam App is installed and running on your iOS Device
+apt-get update
+apt-get install -y build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev
 ```
 
-If you remove these be sure to also remove the preceeding comma `, flush=true`
-You can do this in an editor like nano with the command:
+Configure and install Python 3 (this part may take some time)
 
 ```
-sudo nano berryCam.py
+cd Python-3.7.0
+./configure --enable-optimizations
+make altinstall
 ```
 
-Note: after doing this, wen you run the `berryCam.py` script you'll see an stdout notice. You can ignore this and image capture on the Pi itself should run normally.
+Update the link to the newly installed version of Python
+
+```
+ln -s /usr/local/bin/python3.7 /usr/local/bin/python3
+```
+
+Check the version of Python (should return 3.7.0)
+
+```
+python3 --version
+```
+
+You shoul then be able to launch BerryCam using the command:
+
+```
+sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
+```
+
 
 [Back to top](#top)
