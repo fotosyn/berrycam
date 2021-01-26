@@ -433,3 +433,5 @@ There are a number of guides online to do this, for [MacOS](https://spellfoundry
 Once completed, and if you connect with your Pi's login credentials, you will see the shared folders with your captured images within the `berrycam` folder.
 
 [Back to top](#top)
+
+---
