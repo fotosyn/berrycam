@@ -434,4 +434,3 @@ Once completed, and if you connect with your Pi's login credentials, you will se
 
 [Back to top](#top)
 
----
