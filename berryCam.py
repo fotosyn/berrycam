@@ -15,6 +15,8 @@
 import http.server
 import socketserver
 import os
+from time import sleep
+import picamera
 from urllib import parse
 
 port = 8000
@@ -24,77 +26,85 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
     
     print("B E R R Y C A M -- Listening on port ", port, flush=True)
     print("Please ensure your BerryCam App is installed and running on your iOS Device", flush=True)
-    
+
     def do_GET(self):
         
         parsed_url = parse.urlsplit(self.path)
         parsed_query = parse.parse_qs(parsed_url.query)
         parsed_dictionary = dict(parse.parse_qsl(parsed_url.query))
-        
+
         if parsed_url.path == "/berrycam":
-            
+
+            print("Capture")
             directory = 'berrycam/' + parsed_dictionary['ffolder']
             if not os.path.exists(directory):
                 os.makedirs(directory)
-              
-            # Build up a raspistill command line string
-            
-            command = "raspistill -v" # Initiate command for Raspistill
-            command += " -awb " +   parsed_dictionary['awb'] # Define WB
-            command += " -mm " +   parsed_dictionary['mm'] # Define Metering Mode
-            command += " -ev " + parsed_dictionary['ev'] # Define the Exposure Adjustment
-            command += " -ex " +   parsed_dictionary['ex'] # Define Exposure Mode
-            command += " -sh " + parsed_dictionary['sh'] # Define Image Sharpness
-            command += " -br " + parsed_dictionary['br'] # Define Image Brightness
-            command += " -co " + parsed_dictionary['co'] # Define Image Contrast
-            command += " -sa " + parsed_dictionary['sa'] # Define Image Saturation
-            command += " -ISO " + parsed_dictionary['iso'] # Define Image ISO
-            command += " -drc " + parsed_dictionary['drc'] # Define Image dynamic range compres$
 
-            if parsed_dictionary['ss'] != "1":
-                command += " -ss " + parsed_dictionary['ss'] # Define shutter speed STILL TO BE IMPLEMENTED
+            #Build up a PiCamera command line string
+            with picamera.PiCamera() as camera:
+
+                # Fix for differences in AWB call for sunlight setting
+                if parsed_dictionary['awb'] == "sun":
+                    parsed_dictionary['awb'] = "sunlight"
+
+                # Fix for differences in AWB call for cloudy setting
+                if parsed_dictionary['awb'] == "cloud":
+                    parsed_dictionary['awb'] = "cloudy"
+
+                # Fix for differences in AWB call for greyworld setting - incompatible with PiCamera
+                if parsed_dictionary['awb'] == "greyworld":
+                    parsed_dictionary['awb'] = "auto"
+
+                camera.awb_mode = parsed_dictionary['awb']
+                camera.brightness = int(parsed_dictionary['br'])
+                camera.contrast = int(parsed_dictionary['co'])
+                camera.drc_strength = parsed_dictionary['drc']
+                camera.exposure_compensation = int(parsed_dictionary['ev'])
+                camera.exposure_mode = parsed_dictionary['ex']
+
+                if parsed_dictionary['hf'] == "1":
+                    camera.hflip = True
+
+                camera.image_effect = parsed_dictionary['ifx']
+                camera.iso = int(parsed_dictionary['iso'])
+                camera.meter_mode = parsed_dictionary['mm']
+                camera.saturation = int(parsed_dictionary['sa'])
+                camera.sharpness = int(parsed_dictionary['sh'])
+
+                if parsed_dictionary['vf'] == "1":
+                    camera.vflip = True
                 
-            command += " -ifx " +   parsed_dictionary['ifx'] # Define Image Effect
-            command += " -q " + parsed_dictionary['fquality'] # Define Image Quality
-            command += " -w " + parsed_dictionary['fwidth'] # Define output image width
-            command += " -h " + parsed_dictionary['fheight'] # Define output image height
-            command += " -o berrycam/" + parsed_dictionary['ffolder'] + "/IMG-" + parsed_dictionary['fseq'] +".jpg"
+                if 'gpsLat' in parsed_dictionary:
+                    camera.exif_tags['GPS.GPSLatitude'] = "%s/1,%s/1,%s/100" % (parsed_dictionary['gpsLatD'],parsed_dictionary['gpsLatM'],parsed_dictionary['gpsLatS'])
+                    camera.exif_tags['GPS.GPSLongitude'] = "%s/1,%s/1,%s/100" % (parsed_dictionary['gpsLonD'],parsed_dictionary['gpsLonM'],parsed_dictionary['gpsLonS'])
+                    camera.exif_tags['GPS.GPSAltitude'] = parsed_dictionary['gpsAlt']
+                    camera.exif_tags['GPS.GPSAltitudeRef'] = "0" if parsed_dictionary['gpsAlt'] != "0" else "1"
+                    camera.exif_tags['GPS.GPSLatitudeRef'] = parsed_dictionary['gpsLatRef']
+                    camera.exif_tags['GPS.GPSLongitudeRef'] = parsed_dictionary['gpsLonRef']
+                    camera.exif_tags['GPS.GPSImgDirection'] = "1"
+                    camera.exif_tags['GPS.GPSTimeStamp'] = "1"
 
-            if parsed_dictionary['hf'] == "1":
-              command += " -hf "
-            else:
-              command += ""
+                if parsed_dictionary['ao'] == "1":
+                    camera.annotate_foreground = picamera.Color("#%s" % parsed_dictionary['affg'])
+                    camera.annotate_background = picamera.Color("#%s" % parsed_dictionary['afbg'])
+                    camera.annotate_text = " %s " % parsed_dictionary['a']
+                    camera.annotate_text_size = int(parsed_dictionary['afs'])
 
-            if parsed_dictionary['vf'] == "1":
-              command += " -vf "
-            else:
-              command += ""
+                output_file = "berrycam/" + parsed_dictionary['ffolder'] + "/IMG-" + parsed_dictionary['fseq'] +".jpg"
+                camera.start_preview()
+                camera.resolution = (int(parsed_dictionary['fwidth']), int(parsed_dictionary['fheight']))
+                sleep(2)
+                camera.capture(output_file, format="jpeg", quality=int(parsed_dictionary['fquality']))
 
-            if 'gpsLat' in parsed_dictionary:
-                #command += " -gps" Not needed
-                command += " -x GPS.GPSLatitude=" + parsed_dictionary['gpsLat']
-                command += " -x GPS.GPSLongitude=" + parsed_dictionary['gpsLon']
-                command += " -x GPS.GPSAltitude=" + parsed_dictionary['gpsAlt']
-                command += " -x GPS.GPSLatitudeRef=" + parsed_dictionary['gpsLatRef']
-                command += " -x GPS.GPSLongitudeRef=" + parsed_dictionary['gpsLonRef']
-                command += " -x GPS.GPSImgDirection=1"
-                command += " -x GPS.GPSTimeStamp=1"
-
-            if parsed_dictionary['ao'] == "1":
-              command += " -a 1024"
-              command += " -a " + "\"" + parsed_dictionary['a'] + "\""
-              command += " -ae " + parsed_dictionary['ae']
-
-            os.system(command)
             self.send_response(200)
             self.end_headers()
             return
-            
+
         else:
             http.server.SimpleHTTPRequestHandler.do_GET(self)
             self.end_headers()
             return
-        
-        
+
+
 with socketserver.TCPServer(("", port), BerryCamHandler) as httpd:
     httpd.serve_forever()
