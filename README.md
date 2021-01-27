@@ -234,7 +234,7 @@ sudo apt-get install python-picamera python3-picamera
 BerryCam needs to be run as a Python process to provide the necessary links to allow the BerryCam iOS app to trigger the camera, provide previews and save files. To run simply enter:
 
 ```
-sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
+nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
 ```
 
 The Python script will run in the background and you will see the following message:
@@ -384,7 +384,13 @@ sudo nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
 
 ### Image Capture Failing with HQ Camera Module
 
-In some cases, you may encounter an out of resource error when using PiCamera and the HQ Camera Module. This is easily fixed using the Raspberry Pi config tool which is accessed using the terminal. In an active terminal session with your Raspberry Pi, use the command:
+In some cases, you may encounter an out of component error when using PiCamera and the HQ Camera Module. 
+
+```
+mmal: mmal_vc_component_enable: failed to enable component: ENOSPC
+```
+
+This is easily fixed using the Raspberry Pi config tool which is accessed using the terminal. In an active terminal session with your Raspberry Pi, use the command:
 
 ```
 sudo raspi-config
@@ -415,10 +421,11 @@ On your Pi, edit the file /etc/rc.local using the editor of your choice. You mus
 sudo nano /etc/rc.local
 ```
 
-In the line **before** `exit 0` add the following line. Be sure to reference absolute filenames rather than relative to your `/home` folder replacing `<your_user_name>` with your own user name (in many cases this is `pi`):
+In the line **before** `exit 0` add the following lines. Be sure to reference absolute filenames rather than relative to your `/home` folder replacing `<your_user_name>` with your own user name (in many cases this is `pi`):
 
 ```
-sudo nohup python3 /home/<your_user_name>/berryCam.py > /home/<your_user_name>/berryCam.log & tail -f /home/<your_user_name>/berryCam.log
+cd /home/<your_user_name>/berrycam/
+nohup python3 berryCam.py > berryCam.log & tail -f berryCam.log
 ```
 
 Save this file `CTRL x` confirming with `Y` and `Enter` then restart your Raspberry Pi. If this has been set up correctly and your BerryCam app should connect when you supply the correct IP address in the app.
