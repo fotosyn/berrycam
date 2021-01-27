@@ -8,8 +8,8 @@
 [1. What you need](#items-you-will-need) / [2. Getting started](#useful-guides-to-get-started)  / [3. Camera set-up](#setting-up-the-camera)
 #### Capturing images: 
 [4. The BerryCam script](#installing-and-running-the-berrycam-script) / [5. Using the BerryCam app](#using-the-berrycam-app-to-capture-images) / [6. Troubleshooting](#troubleshooting)
-#### Other things to try:
-[7. Autostart BerryCam on boot](#autostartberrycamonboot) / [8. Copying images from your Raspberry Pi using a shared directory](#copyingimagesfromyourraspberrypiusingashareddirectory)
+#### Additional setup:
+[7. Autostart BerryCam on boot](#other-things-to-try) / [8. Copying images from your Raspberry Pi using a shared directory](#other-things-to-try)
 
 #### Raspistill version of the BerryCam.py script
 BerryCam originally used Raspistill to capture images. However there is a new version which uses the popular PiCamera package. Both versions are available within this Repo, and designed to work with the latest version of the BerryCam app. **If you wish to use the PiCamera version, please update your BerryCam app from the App Store to the latest version.**
