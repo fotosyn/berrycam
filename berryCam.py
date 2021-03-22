@@ -65,6 +65,9 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
                 if parsed_dictionary['hf'] == "1":
                     camera.hflip = True
 
+                if parsed_dictionary['ifx'] == "watercolour":
+                    parsed_dictionary['ifx'] = "watercolor"
+
                 camera.image_effect = parsed_dictionary['ifx']
                 camera.iso = int(parsed_dictionary['iso'])
                 camera.meter_mode = parsed_dictionary['mm']
