@@ -62,11 +62,13 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
                 camera.exposure_compensation = int(parsed_dictionary['ev'])
                 camera.exposure_mode = parsed_dictionary['ex']
 
-                if parsed_dictionary['hf'] == "1":
-                    camera.hflip = True
-
+                # Watercolour renamed to Watercolor in PiCamera
                 if parsed_dictionary['ifx'] == "watercolour":
                     parsed_dictionary['ifx'] = "watercolor"
+
+                # Whiteboard not available with PiCamera
+                if parsed_dictionary['ifx'] == "whiteboard":
+                    parsed_dictionary['ifx'] = "none"
 
                 camera.image_effect = parsed_dictionary['ifx']
                 camera.iso = int(parsed_dictionary['iso'])
@@ -77,6 +79,10 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
                 if parsed_dictionary['vf'] == "1":
                     camera.vflip = True
                 
+                if parsed_dictionary['hf'] == "1":
+                    camera.hflip = True
+
+                # GPS coordinates from device to add to EXIF data 
                 if 'gpsLat' in parsed_dictionary:
                     camera.exif_tags['GPS.GPSLatitude'] = "%s/1,%s/1,%s/100" % (parsed_dictionary['gpsLatD'],parsed_dictionary['gpsLatM'],parsed_dictionary['gpsLatS'])
                     camera.exif_tags['GPS.GPSLongitude'] = "%s/1,%s/1,%s/100" % (parsed_dictionary['gpsLonD'],parsed_dictionary['gpsLonM'],parsed_dictionary['gpsLonS'])
@@ -87,6 +93,7 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
                     camera.exif_tags['GPS.GPSImgDirection'] = "1"
                     camera.exif_tags['GPS.GPSTimeStamp'] = "1"
 
+                # Annotations for captured image
                 if parsed_dictionary['ao'] == "1":
                     camera.annotate_foreground = picamera.Color("#%s" % parsed_dictionary['affg'])
                     camera.annotate_background = picamera.Color("#%s" % parsed_dictionary['afbg'])
