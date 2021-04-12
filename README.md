@@ -51,7 +51,9 @@ Learn about Raspberry Pi OS, included software, and how to adjust some key setti
 It's recommended you take a look at the resources here as you will need to use Terminal and some basic commands to install BerryCam and run the Python script.
 
 [Other Frequently Asked Questions](https://www.raspberrypi.org/documentation/faqs/)
-A wide range of information related to the hardware and software to get up and running with the various models of Raspberry Pi
+A wide range of information related to the hardware and software to get up and running with the various models of Raspberry Pi. 
+
+[Raspberry Pi OS](https://downloads.raspberrypi.org/raspios_full_armhf/release_notes.txt) is well maintained and receives regular updates. This may change the instructions here from time to time. If you notice any differences, please let me know by raising an issue and I'll update the documentation, with thanks in advance.
 
 [Back to top](#top)
 
@@ -397,6 +399,8 @@ sudo raspi-config
 ```
 
 Navigate to item **7 Advanced Options** in the menu screen that appears using the cursor keys and press enter. Again, using the cursor keys navigate to **A3 Memory Split** and press enter. You will then see a screen as follows. Enter 256MB where it reads 128MB.
+
+An updated version of [Raspberry Pi OS](https://downloads.raspberrypi.org/raspios_full_armhf/release_notes.txt) has the GPU memory settying within **4 Performance Options** and option **P2 GPU Memory**
 
 ![\[Adjust GPU Memory in raspi-config\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/raspi-config-screen.png)
 
