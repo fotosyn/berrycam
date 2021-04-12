@@ -400,7 +400,7 @@ sudo raspi-config
 
 Navigate to item **7 Advanced Options** in the menu screen that appears using the cursor keys and press enter. Again, using the cursor keys navigate to **A3 Memory Split** and press enter. You will then see a screen as follows. Enter 256MB where it reads 128MB.
 
-An updated version of [Raspberry Pi OS](https://downloads.raspberrypi.org/raspios_full_armhf/release_notes.txt) has the GPU memory settying within **4 Performance Options** and option **P2 GPU Memory**
+An updated version of [Raspberry Pi OS](https://downloads.raspberrypi.org/raspios_full_armhf/release_notes.txt) has the GPU memory setting within **4 Performance Options** and option **P2 GPU Memory**
 
 ![\[Adjust GPU Memory in raspi-config\]](https://raw.githubusercontent.com/fotosyn/berrycam/master/Assets/raspi-config-screen.png)
 
