@@ -44,6 +44,9 @@ It's important that you have the following items to run BerryCam.
 [Setting up your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up)
 Here you’ll learn about your Raspberry Pi, what things you need to use it, and how to set it up.
 
+[Manually configuring Wifi](https://www.raspberrypi-spy.co.uk/2017/04/manually-setting-up-pi-wifi-using-wpa_supplicant-conf/)
+Set up the `wpa_supplicant.conf` so you have Wifi connectivity on first boot.
+
 [Using your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-using)
 Learn about Raspberry Pi OS, included software, and how to adjust some key settings to your needs.
 
