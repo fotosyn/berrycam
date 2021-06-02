@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo systemctl enable /usr/bin/berryCam/berryCam.service
+sudo systemctl daemon-reload
+sudo systemctl start berryCam

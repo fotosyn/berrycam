@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo systemctl stop berryCam
+sudo systemctl disable berryCam
+sudo systemctl daemon-reload
