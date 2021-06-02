@@ -114,27 +114,6 @@ Given this section is quite lengthy, you may wish to skip to the parts relevant 
 **Existing users:**
 [Updating your BerryCam.py script](#updatingtheberrycampyscript)
 
-# Install as a service that runs at boot
-#### Install the gpg key and then the repo
-1. curl -s --compressed "https://jcksnvllxr80.github.io/aw_rpi_ppa_repo/KEY.gpg" | sudo apt-key add -
-2. sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://jcksnvllxr80.github.io/aw_rpi_ppa_repo/my_list_file.list"
-3. sudo apt update
-
-#### Install the service
-1. sudo apt install berrycam
-
-#### Uninstall the service
-1. sudo apt remove berrycam -y
-
-#### starting, stopping, restarting, or getting the service status
-1. sudo systemctl start berryCam
-2. sudo systemctl stop berryCam
-3. sudo systemctl restart berryCam
-4. sudo systemctl status berryCam
-
-#### updating the berrycam service
-1. apt install --only-upgrade berrycam
-
 #### Using the Raspberry Pi OS desktop
 
 Start LXTerminal on the Raspberry Pi using the icon (a small black window icon with a white arrow) on the top tool bar desktop. You will be presented with a window like this.
@@ -324,6 +303,48 @@ BerryCam is a quick and easy way to unlock experimentation with the Raspberry Pi
 [Back to top](#top)
 
 ---
+
+# Install as a service that runs at boot
+#### Install the gpg key and then the repo
+```
+curl -s --compressed "https://jcksnvllxr80.github.io/aw_rpi_ppa_repo/KEY.gpg" | sudo apt-key add -
+sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://jcksnvllxr80.github.io/aw_rpi_ppa_repo/my_list_file.list"
+sudo apt update
+```
+
+#### Install the service
+```
+sudo apt install berrycam
+```
+
+#### Uninstall the service
+```
+sudo apt remove berrycam -y
+```
+
+#### Starting, stopping, restarting, or getting the service status
+1. start berryCam
+```
+sudo systemctl start berryCam
+```
+
+2. stop berryCam
+```
+sudo systemctl stop berryCam
+```
+
+3. restart berryCam
+```
+sudo systemctl restart berryCam
+```
+
+4. get berryCam service status
+```
+sudo systemctl status berryCam
+```
+
+#### Updating the berrycam service
+1. apt install --only-upgrade berrycam
 
 # Troubleshooting
 
