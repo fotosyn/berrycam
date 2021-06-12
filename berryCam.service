@@ -1,0 +1,23 @@
+# this file runs /home/pi/berrycam/berryCam.py as a service at boot time
+# 
+# to get it started:
+# 1. permissions must be 644 for the .service file (this one)
+# 2. sudo systemctl enable /home/pi/berrycam/berryCam.service
+# 3. sudo systemctl daemon-reload
+# 
+# Usage:
+# sudo systemctl start | status | stop | restart berrycam
+# OR
+# sudo service berrycam start | status | stop | restart
+
+[Unit]
+Description=berrycam listener and controller service for rpi camera
+After=local-fs.target basic.target
+
+[Service]
+Type=idle
+User=root
+ExecStart=/usr/bin/nohup /usr/bin/python3 /home/pi/berrycam/berryCam.py 2>&1 &
+
+[Install]
+WantedBy=basic.target

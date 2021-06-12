@@ -14,10 +14,22 @@
 
 import http.server
 import socketserver
+import logging
 import os
 from time import sleep
 import picamera
 from urllib import parse
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.propagate = False
+# create console handler and set level to info
+handler = logging.StreamHandler()
+handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s [brain_hat_buttons] [%(levelname)-5.5s]  %(message)s")
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 port = 8000
 handler = http.server.SimpleHTTPRequestHandler
@@ -25,6 +37,7 @@ handler = http.server.SimpleHTTPRequestHandler
 class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
     
     print("B E R R Y C A M -- Listening on port ", port, flush=True)
+    logger.info("B E R R Y C A M -- Listening on port {0}".format(port))
     print("Please ensure your BerryCam App is installed and running on your iOS Device", flush=True)
 
     def do_GET(self):
@@ -101,10 +114,12 @@ class BerryCamHandler (http.server.SimpleHTTPRequestHandler):
                     camera.annotate_text_size = int(parsed_dictionary['afs'])
 
                 output_file = "berrycam/" + parsed_dictionary['ffolder'] + "/IMG-" + parsed_dictionary['fseq'] +".jpg"
+                logger.info("starting preview")
                 camera.start_preview()
                 camera.resolution = (int(parsed_dictionary['fwidth']), int(parsed_dictionary['fheight']))
                 sleep(2)
                 camera.capture(output_file, format="jpeg", quality=int(parsed_dictionary['fquality']))
+                logger.info("Capture image to file: {0}".format(output_file))
 
             self.send_response(200)
             self.end_headers()
