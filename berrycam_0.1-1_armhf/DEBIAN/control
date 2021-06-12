@@ -1,6 +1,0 @@
-Package: berrycam
-Version: 0.1
-Architecture: armhf
-Depends: ncat
-Maintainer: Aaron Watkins <ac.watkins80@gmail.com>
-Description: A service that runs at boot time on raspberry pi and listens for connections from an iOS device to control any of the raspi camera types.

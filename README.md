@@ -304,22 +304,20 @@ BerryCam is a quick and easy way to unlock experimentation with the Raspberry Pi
 
 ---
 
-# Install as a service that runs at boot
-#### Install the gpg key and then the repo
+# Run BerryCam as a service that start at boot time
+
+#### Enable the service starting on boot
 ```
-curl -s --compressed "https://jcksnvllxr80.github.io/aw_rpi_ppa_repo/KEY.gpg" | sudo apt-key add -
-sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://jcksnvllxr80.github.io/aw_rpi_ppa_repo/my_list_file.list"
-sudo apt update
+sudo systemctl enable /home/pi/berrycam/berryCam.service
+sudo systemctl daemon-reload
+sudo systemctl start berryCam
 ```
 
-#### Install the service
+#### Disable the service starting on boot
 ```
-sudo apt install berrycam
-```
-
-#### Uninstall the service
-```
-sudo apt remove berrycam -y
+sudo systemctl stop berryCam
+sudo systemctl disable berryCam
+sudo systemctl daemon-reload
 ```
 
 #### Starting, stopping, restarting, or getting the service status
@@ -342,9 +340,6 @@ sudo systemctl restart berryCam
 ```
 sudo systemctl status berryCam
 ```
-
-#### Updating the berrycam service
-1. apt install --only-upgrade berrycam
 
 # Troubleshooting
 

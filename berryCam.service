@@ -1,8 +1,8 @@
-# this file runs /usr/bin/berryCam/berryCam.py as a service at boot time
+# this file runs /home/pi/berrycam/berryCam.py as a service at boot time
 # 
 # to get it started:
 # 1. permissions must be 644 for the .service file (this one)
-# 2. sudo systemctl enable /usr/bin/berryCam/berryCam.service
+# 2. sudo systemctl enable /home/pi/berrycam/berryCam.service
 # 3. sudo systemctl daemon-reload
 # 
 # Usage:
@@ -17,7 +17,7 @@ After=local-fs.target basic.target
 [Service]
 Type=idle
 User=root
-ExecStart=/usr/bin/nohup /usr/bin/python3 /usr/bin/berryCam/berryCam.py 2>&1 &
+ExecStart=/usr/bin/nohup /usr/bin/python3 /home/pi/berrycam/berryCam.py 2>&1 &
 
 [Install]
 WantedBy=basic.target
