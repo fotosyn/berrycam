@@ -4,10 +4,10 @@
 
 ### Steps to get BerryCam up and running on your Raspberry Pi and iOS device 
 
-#### Before you begin:
-Berrycam currently uses the raspistill and picamera libraries to capture images. With the release of Raspberry Pi OS 11 (Bullseye), libcamera is the default capture library. Whilst most functionality has been ported over, many areas are still in development and there are some performance issues when using models of Pi such as the Pi Zero. 
+#### IMPORTANT. Read this before you begin:
+Berrycam currently uses the raspistill and picamera libraries to capture images. With the release of Raspberry Pi OS 11 (Bullseye), libcamera is the default capture library. Whilst most functionality has been ported over from raspistill, many areas are still in development and there are some performance issues when using models of Pi such as the Pi Zero. 
 
-**It is recommended that you use Raspberry Pi OS 10 (Buster)** whilst some issues are ironed out in implementing the new capture libraries and to ensure the full range of functionality available within the Berrycam app works accurately and reliably. Sorry there is no solution as of yet in using the latest OS which has a number of improvements; but this is a pragmatic solution in the interim which will save you a ton of time.
+**It is recommended that you use Raspberry Pi OS 10 (Buster)** whilst these issues are ironed out in implementing the new capture libraries. This will take some time, yet is necessary to ensure the full range of functionality available within the Berrycam app works accurately and reliably. Sorry there is no solution as of yet in using the latest OS which has a number of improvements; but this is a pragmatic solution in the interim which will save you a ton of time.
 
 [Earlier versions of Raspberry Pi OS (Buster) are available here](https://downloads.raspberrypi.org/raspios_full_armhf/images/)
 
