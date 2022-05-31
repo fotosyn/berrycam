@@ -313,6 +313,43 @@ BerryCam is a quick and easy way to unlock experimentation with the Raspberry Pi
 
 ---
 
+# Run BerryCam as a service that start at boot time
+
+#### Enable the service starting on boot
+```
+sudo systemctl enable /home/pi/berrycam/berryCam.service
+sudo systemctl daemon-reload
+sudo systemctl start berryCam
+```
+
+#### Disable the service starting on boot
+```
+sudo systemctl stop berryCam
+sudo systemctl disable berryCam
+sudo systemctl daemon-reload
+```
+
+#### Starting, stopping, restarting, or getting the service status
+1. start berryCam
+```
+sudo systemctl start berryCam
+```
+
+2. stop berryCam
+```
+sudo systemctl stop berryCam
+```
+
+3. restart berryCam
+```
+sudo systemctl restart berryCam
+```
+
+4. get berryCam service status
+```
+sudo systemctl status berryCam
+```
+
 # Troubleshooting
 
 If you are running an earlier version of Python3, pre version 3.3 then you will encounter a problem with the flush=true parameter in the `berryCam.py` script. 
